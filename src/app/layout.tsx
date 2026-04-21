@@ -44,19 +44,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${fraunces.variable} ${inter.variable} ${plexMono.variable}`}>
       <body>
-        {/* Hidden static form for Netlify Forms bot detection during build */}
-        <form name="intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
-          <input type="text" name="firstName" />
-          <input type="text" name="lastName" />
-          <input type="email" name="email" />
-          <input type="text" name="domain" />
-          <input type="text" name="role" />
-          <input type="text" name="revenue" />
-          <input type="text" name="timeline" />
-          <textarea name="problem"></textarea>
-          <input type="text" name="source" />
-          <input type="text" name="bot-field" />
-        </form>
         <Navbar />
         <main>{children}</main>
         <Footer />
