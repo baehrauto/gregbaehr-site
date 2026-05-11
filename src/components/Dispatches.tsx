@@ -1,46 +1,47 @@
 export default function Dispatches() {
   return (
-    <section className="py-16 md:py-20">
+    <section className="py-20 md:py-24 border-b border-[color:var(--color-rule-2)]">
       <div className="max-w-[1280px] mx-auto px-6 md:px-10">
         <a
           href="https://instagram.com/baehr.ai"
           target="_blank"
           rel="noreferrer"
-          className="block border border-[color:var(--color-ink)] p-8 md:p-10 group hover:bg-[color:var(--color-paper-2)] transition-colors"
+          className="block bg-[color:var(--color-bg-2)] border border-[color:var(--color-rule-2)] p-8 md:p-12 group hover:border-[color:var(--color-accent)] transition-colors"
         >
-          <div className="grid md:grid-cols-12 gap-6 md:gap-10 items-center">
+          <div className="grid md:grid-cols-12 gap-8 md:gap-10 items-center">
             <div className="md:col-span-2 flex md:justify-center">
-              <div className="w-20 h-20 md:w-24 md:h-24 rounded-full border border-[color:var(--color-rule)] bg-[color:var(--color-paper-2)] flex items-center justify-center overflow-hidden relative">
+              <div className="relative w-24 h-24 md:w-28 md:h-28 bg-[color:var(--color-bg-3)] flex items-center justify-center overflow-hidden">
                 <div
                   aria-hidden
-                  className="absolute inset-0 opacity-70 mix-blend-multiply"
+                  className="absolute inset-0"
                   style={{
                     background:
-                      "radial-gradient(circle at 30% 30%, rgba(139, 47, 28, 0.4) 0%, transparent 60%), radial-gradient(circle at 75% 75%, rgba(212, 160, 122, 0.5) 0%, transparent 60%)",
+                      "radial-gradient(circle at 30% 30%, rgba(255, 138, 61, 0.55) 0%, transparent 60%), radial-gradient(circle at 75% 75%, rgba(236, 232, 219, 0.10) 0%, transparent 60%)",
                   }}
                 />
-                <span className="serif italic text-3xl relative">gb</span>
+                <span className="relative font-semibold text-3xl tracking-tight">gb</span>
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-[color:var(--color-accent)]" aria-hidden />
               </div>
             </div>
             <div className="md:col-span-7">
-              <p className="eyebrow mb-2">Instagram · public building</p>
-              <p className="serif text-3xl md:text-4xl tracking-[-0.015em]">
-                <span className="italic accent">@baehr.ai</span>
+              <p className="label mb-4">— INSTAGRAM · PUBLIC BUILDING</p>
+              <p className="display text-3xl md:text-4xl">
+                <span className="stamp">@baehr.ai</span>
               </p>
-              <p className="muted mt-3 max-w-lg leading-relaxed">
+              <p className="muted mt-4 max-w-lg leading-relaxed">
                 Field notes on deploying AI inside real operating companies —
                 what&rsquo;s working, what isn&rsquo;t, and why.
               </p>
             </div>
-            <div className="md:col-span-3 flex md:justify-end">
-              <span className="pill-cta group-hover:bg-[color:var(--color-ink)] group-hover:text-[color:var(--color-paper)]">
+            <div className="md:col-span-3 md:justify-self-end">
+              <span className="btn btn-ghost group-hover:translate-x-[-2px] group-hover:translate-y-[-2px]">
                 Follow
-                <span className="pill-cta-arrow" aria-hidden>
+                <span className="btn-arrow" aria-hidden>
                   <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                     <path
                       d="M3 7h8m0 0L7 3m4 4l-4 4"
                       stroke="currentColor"
-                      strokeWidth="1.5"
+                      strokeWidth="1.8"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />

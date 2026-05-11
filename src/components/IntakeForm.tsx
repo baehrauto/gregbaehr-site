@@ -142,14 +142,14 @@ export default function IntakeForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-[color:var(--color-rule)] p-10 md:p-14 text-center">
-        <p className="eyebrow mb-6">Received</p>
-        <h2 className="serif text-4xl md:text-5xl leading-tight max-w-2xl mx-auto">
-          You&rsquo;re on the list.
+      <div className="border border-[color:var(--color-fg)] p-10 md:p-14 text-center bg-[color:var(--color-bg-2)]">
+        <p className="label mb-6">— RECEIVED</p>
+        <h2 className="display text-4xl md:text-5xl lg:text-[64px] max-w-2xl mx-auto">
+          You&rsquo;re <span className="stamp">on the list</span>.
         </h2>
         <p className="muted mt-6 max-w-lg mx-auto leading-relaxed">
           I review every intake personally. If there&rsquo;s a fit, I&rsquo;ll reach
-          out within 72 hours from <span className="text-[color:var(--color-paper)]">greg@autera.us</span>.
+          out within 72 hours from <span className="text-[color:var(--color-fg)] font-medium border-b border-[color:var(--color-accent)]">greg@autera.us</span>.
         </p>
       </div>
     );
@@ -291,16 +291,16 @@ export default function IntakeForm() {
       </FieldSection>
 
       {/* Submit */}
-      <div className="pt-4 border-t border-[color:var(--color-rule)]">
+      <div className="pt-4 border-t border-[color:var(--color-rule-2)]">
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="pill-cta pill-cta-lg disabled:opacity-60 disabled:cursor-not-allowed"
+          className="btn btn-accent btn-lg disabled:opacity-60 disabled:cursor-not-allowed"
         >
           <span>{status === "submitting" ? "Submitting…" : "Request access"}</span>
-          <span className="pill-cta-arrow" aria-hidden>
+          <span className="btn-arrow" aria-hidden>
             <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
-              <path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              <path d="M3 7h8m0 0L7 3m4 4l-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </span>
         </button>
@@ -324,11 +324,12 @@ function FieldSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="grid md:grid-cols-12 gap-10 border-t border-[color:var(--color-rule)] pt-10">
+    <section className="grid md:grid-cols-12 gap-10 border-t border-[color:var(--color-rule-2)] pt-10">
       <div className="md:col-span-3">
-        <p className="eyebrow">
-          <span className="num not-italic mr-2">{number} —</span> {title}
-        </p>
+        <div className="flex items-center gap-3">
+          <span className="num-stamp">{number}</span>
+          <span className="label">— {title}</span>
+        </div>
       </div>
       <div className="md:col-span-9 space-y-6">{children}</div>
     </section>
@@ -352,7 +353,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="eyebrow block mb-3">{label}</span>
+      <span className="label block mb-3">— {label}</span>
       {children}
       {help && !error && <span className="block mt-2 text-xs muted">{help}</span>}
       {error && (

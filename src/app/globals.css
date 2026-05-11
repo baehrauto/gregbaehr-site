@@ -1,225 +1,337 @@
 @import "tailwindcss";
 
 @theme {
-  --color-paper: #f1ebdd;
-  --color-paper-2: #ebe4d3;
-  --color-ink: #1a1613;
-  --color-ink-2: #2a241f;
-  --color-muted: #6f665b;
-  --color-rule: #d6cbb5;
-  --color-accent: #8b2f1c;
-  --color-accent-soft: #d4a07a;
+  /* ── Petroleum + Saffron palette ── */
+  --color-bg: #0d0c0a;             /* page bg — warm near-black */
+  --color-bg-2: #16140f;           /* section bg */
+  --color-bg-3: #1f1c15;           /* card / panel surface */
+  --color-bg-4: #2a2620;           /* elevated card */
+  --color-fg: #ece8db;             /* bone — primary text */
+  --color-fg-2: #d6d1bf;           /* slightly softer */
+  --color-muted: #8a8472;           /* warm taupe */
+  --color-muted-2: #6a6453;         /* deeper taupe */
+  --color-rule: #2a2620;            /* hairline */
+  --color-rule-2: #3d362a;          /* stronger hairline */
+  --color-accent: #00d4a3;          /* electric mint */
+  --color-accent-2: #00b88a;        /* deeper mint for hover */
+  --color-accent-soft: rgba(0, 212, 163, 0.18);
 
-  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 html,
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-bg);
+  color: var(--color-fg);
   font-family: var(--font-sans);
+  font-feature-settings: "ss01", "ss02", "cv11";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 ::selection {
-  background: var(--color-ink);
-  color: var(--color-paper);
+  background: var(--color-accent);
+  color: var(--color-bg);
 }
 
-.serif {
-  font-family: var(--font-serif);
-  letter-spacing: -0.02em;
-}
-
+/* ── Utilities ── */
 .mono {
   font-family: var(--font-mono);
   letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+}
+
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.94;
+}
+
+.display-md {
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  line-height: 1;
 }
 
 .hairline {
   height: 1px;
-  background: var(--color-rule);
+  background: var(--color-rule-2);
 }
 
-.hairline-ink {
+.hairline-fg {
   height: 1px;
-  background: var(--color-ink);
+  background: var(--color-fg);
 }
 
-.eyebrow {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--color-muted);
+.hairline-accent {
+  height: 1px;
+  background: var(--color-accent);
 }
 
 .muted {
   color: var(--color-muted);
 }
 
+.fg-2 {
+  color: var(--color-fg-2);
+}
+
 .accent {
   color: var(--color-accent);
 }
 
-/* Page grain — subtle paper texture */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  opacity: 0.35;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.12 0 0 0 0 0.09 0 0 0 0 0.07 0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
-}
-
-/* Masthead rule — thin double line */
-.masthead-rule {
-  border-top: 1px solid var(--color-ink);
-  border-bottom: 1px solid var(--color-ink);
-  padding: 0.5rem 0;
-}
-
-/* Drop cap for opening paragraphs */
-.dropcap::first-letter {
-  font-family: var(--font-serif);
-  font-style: italic;
+/* ── Metadata label — mono uppercase, tight tracking ── */
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
   font-weight: 500;
-  font-size: 4.5em;
-  line-height: 0.9;
-  float: left;
-  margin: 0.05em 0.12em -0.05em 0;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.label-accent {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
   color: var(--color-accent);
 }
 
-/* Pill CTA — ink on paper */
-.pill-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.35rem 0.4rem 0.35rem 1.1rem;
-  border: 1px solid var(--color-ink);
-  border-radius: 999px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-ink);
-  background: transparent;
-  transition: background 0.25s ease, color 0.25s ease;
-}
-
-.pill-cta:hover {
-  background: var(--color-ink);
-  color: var(--color-paper);
-}
-
-.pill-cta-arrow {
+/* ── Number stamp — Arabic in square bg ── */
+.num-stamp {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 999px;
-  background: var(--color-ink);
-  color: var(--color-paper);
-  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), background 0.25s, color 0.25s;
+  width: 38px;
+  height: 38px;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-variant-numeric: tabular-nums;
 }
 
-.pill-cta:hover .pill-cta-arrow {
-  transform: rotate(-45deg);
-  background: var(--color-paper);
-  color: var(--color-ink);
+.num-stamp-lg {
+  width: 56px;
+  height: 56px;
+  font-size: 16px;
 }
 
-.pill-cta-lg {
-  padding: 0.45rem 0.5rem 0.45rem 1.4rem;
+/* ── Stamp emphasis — tilted saffron block with bg-color text inside ──
+   Wraps a word/phrase. Looks like a rubber stamp. */
+.stamp {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 600;
+  padding: 0.04em 0.28em 0.12em;
+  transform: rotate(-1.5deg);
+  box-shadow:
+    -2px 2px 0 0 rgba(0,0,0,0.35),
+    inset 0 0 0 1px rgba(13,12,10,0.08);
+  /* prevent baseline shift on rotated inline-block */
+  vertical-align: baseline;
+  letter-spacing: -0.02em;
+}
+
+.stamp-sm {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-bg);
+  font-weight: 600;
+  padding: 0.02em 0.3em 0.06em;
+  transform: rotate(-1.5deg);
+  box-shadow:
+    -1.5px 1.5px 0 0 rgba(0,0,0,0.32),
+    inset 0 0 0 1px rgba(13,12,10,0.08);
+  vertical-align: baseline;
+  letter-spacing: -0.005em;
+  font-size: 0.95em;
+}
+
+/* Slight-right tilt alt — alternate on adjacent stamps */
+.stamp-r {
+  transform: rotate(1.2deg);
+}
+
+/* ── Square button — brutalist, offset shadow ── */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.4rem;
+  background: var(--color-fg);
+  color: var(--color-bg);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.005em;
+  border: 1px solid var(--color-fg);
+  box-shadow: 4px 4px 0 0 var(--color-accent);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.btn:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 0 var(--color-accent);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-bg);
+  border-color: var(--color-accent);
+  box-shadow: 4px 4px 0 0 var(--color-fg);
+}
+
+.btn-accent:hover {
+  background: var(--color-accent-2);
+  box-shadow: 6px 6px 0 0 var(--color-fg);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-fg);
+  border-color: var(--color-fg);
+  box-shadow: 4px 4px 0 0 var(--color-rule-2);
+}
+
+.btn-ghost:hover {
+  background: var(--color-fg);
+  color: var(--color-bg);
+  box-shadow: 6px 6px 0 0 var(--color-accent);
+}
+
+.btn-lg {
+  padding: 1rem 1.7rem;
   font-size: 14px;
 }
 
-.pill-cta-lg .pill-cta-arrow {
-  width: 36px;
-  height: 36px;
+/* arrow inside button */
+.btn-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.pill-cta-solid {
-  background: var(--color-ink);
-  color: var(--color-paper);
+.btn:hover .btn-arrow {
+  transform: translateX(2px);
 }
 
-.pill-cta-solid .pill-cta-arrow {
-  background: var(--color-paper);
-  color: var(--color-ink);
+/* ── Tag pill — small mono badge with border ── */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-fg-2);
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--color-rule-2);
+  background: transparent;
 }
 
-.pill-cta-solid:hover {
+.tag-accent {
+  color: var(--color-bg);
   background: var(--color-accent);
-  color: var(--color-paper);
+  border-color: var(--color-accent);
 }
 
-.pill-cta-solid:hover .pill-cta-arrow {
-  background: var(--color-paper);
+/* ── Vertical text label (margin notation) ── */
+.v-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* ── Marker list — `+` in saffron ── */
+.plus-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.plus-list li {
+  position: relative;
+  padding-left: 1.6rem;
+  line-height: 1.6;
+}
+
+.plus-list li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
   color: var(--color-accent);
+  font-weight: 600;
+  font-size: 0.95em;
+  line-height: 1.7;
 }
 
-/* Roman numeral markers */
-.roman {
-  font-family: var(--font-serif);
-  font-style: italic;
-  color: var(--color-accent);
-  font-weight: 400;
-}
-
-/* Inputs */
+/* ── Inputs ── */
 .input {
   width: 100%;
-  background: transparent;
-  border: none;
-  border-bottom: 1px solid var(--color-rule);
-  color: var(--color-ink);
-  padding: 0.6rem 0 0.7rem;
-  font-size: 16px;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-rule-2);
+  color: var(--color-fg);
+  padding: 0.8rem 1rem;
+  font-size: 15px;
   font-family: var(--font-sans);
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, background 0.2s ease;
   border-radius: 0;
 }
 
 .input:focus {
   outline: none;
-  border-bottom-color: var(--color-ink);
+  border-color: var(--color-accent);
+  background: var(--color-bg-3);
 }
 
 .input::placeholder {
-  color: var(--color-muted);
-  opacity: 0.55;
+  color: var(--color-muted-2);
+  opacity: 0.85;
 }
 
 select.input {
   appearance: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%236f665b' stroke-width='1.5' stroke-linecap='round'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'><path d='M1 1l5 5 5-5' stroke='%2300d4a3' stroke-width='1.5' stroke-linecap='round'/></svg>");
   background-repeat: no-repeat;
-  background-position: right 0.25rem center;
-  padding-right: 2rem;
+  background-position: right 0.7rem center;
+  padding-right: 2.2rem;
 }
 
 select.input option {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-bg-2);
+  color: var(--color-fg);
 }
 
 textarea.input {
-  border: 1px solid var(--color-rule);
-  padding: 0.9rem 1rem;
-  border-radius: 2px;
+  min-height: 160px;
+  resize: vertical;
 }
 
-textarea.input:focus {
-  border-color: var(--color-ink);
-}
-
-/* Marquee */
+/* ── Marquee ── */
 .marquee {
   display: flex;
   overflow: hidden;
@@ -229,10 +341,10 @@ textarea.input:focus {
 
 .marquee-track {
   display: flex;
-  gap: 4rem;
+  gap: 3rem;
   animation: marquee 50s linear infinite;
   white-space: nowrap;
-  padding-right: 4rem;
+  padding-right: 3rem;
 }
 
 @keyframes marquee {
@@ -240,13 +352,24 @@ textarea.input:focus {
   to { transform: translateX(-50%); }
 }
 
-/* Ensure content sits above grain */
+/* ── Grain ── */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.25;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.92 0 0 0 0 0.85 0 0 0 0.3 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
 main, header, footer {
   position: relative;
   z-index: 2;
 }
 
-/* Hero background — paper edition with mouse-reactive warm light */
+/* ── Hero background — dark canvas with saffron mouse-reactive glow ── */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -263,14 +386,14 @@ main, header, footer {
 
 .hero-bg-base {
   background:
-    radial-gradient(ellipse 80% 70% at 20% 30%, #ebe4d3 0%, transparent 55%),
-    radial-gradient(ellipse 70% 60% at 90% 85%, #e7ddc5 0%, transparent 60%),
-    linear-gradient(180deg, #f4eede 0%, #ede5d0 55%, #e8dfc8 100%);
+    radial-gradient(ellipse 80% 70% at 20% 30%, #15130e 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 90% 85%, #1a160f 0%, transparent 60%),
+    linear-gradient(180deg, #110f0c 0%, #0d0c0a 55%, #0a0907 100%);
 }
 
 .hero-bg-aurora {
-  mix-blend-mode: multiply;
-  opacity: 0.55;
+  mix-blend-mode: screen;
+  opacity: 0.5;
   filter: blur(80px);
 }
 
@@ -286,7 +409,7 @@ main, header, footer {
   aspect-ratio: 1;
   left: -6%;
   top: 12%;
-  background: radial-gradient(circle, rgba(139, 47, 28, 0.22) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(0, 212, 163, 0.16) 0%, transparent 65%);
   animation: drift-a 22s ease-in-out infinite alternate;
 }
 
@@ -295,7 +418,7 @@ main, header, footer {
   aspect-ratio: 1;
   right: -8%;
   bottom: -8%;
-  background: radial-gradient(circle, rgba(92, 62, 38, 0.18) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(0, 212, 163, 0.10) 0%, transparent 65%);
   animation: drift-b 28s ease-in-out infinite alternate;
 }
 
@@ -309,39 +432,40 @@ main, header, footer {
   100% { transform: translate(-10%, -12%) scale(1.05); }
 }
 
-/* Dot grid, fades around cursor */
+/* Grid lines instead of dots — feels more architectural */
 .hero-bg-grid {
-  background-image: radial-gradient(circle, rgba(26, 22, 19, 0.18) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 60% 70% at var(--mx) var(--my), #000 0%, rgba(0,0,0,0.55) 35%, transparent 75%);
-  -webkit-mask-image: radial-gradient(ellipse 60% 70% at var(--mx) var(--my), #000 0%, rgba(0,0,0,0.55) 35%, transparent 75%);
-  opacity: 0.8;
+  background-image:
+    linear-gradient(to right, rgba(236, 232, 219, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 232, 219, 0.045) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 80% at var(--mx) var(--my), #000 0%, rgba(0,0,0,0.55) 35%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at var(--mx) var(--my), #000 0%, rgba(0,0,0,0.55) 35%, transparent 78%);
 }
 
-/* Warm terracotta spotlight follows cursor */
+/* Mint spotlight follows cursor */
 .hero-bg-spot {
   background:
     radial-gradient(
-      circle 560px at var(--mx) var(--my),
-      rgba(139, 47, 28, 0.14) 0%,
-      rgba(139, 47, 28, 0.05) 30%,
-      transparent 62%
+      circle 600px at var(--mx) var(--my),
+      rgba(0, 212, 163, 0.13) 0%,
+      rgba(0, 212, 163, 0.04) 32%,
+      transparent 64%
     ),
     radial-gradient(
       circle 280px at var(--mx) var(--my),
-      rgba(212, 160, 122, 0.22) 0%,
+      rgba(0, 212, 163, 0.22) 0%,
       transparent 70%
     );
-  mix-blend-mode: multiply;
+  mix-blend-mode: screen;
 }
 
 .hero-bg-grain {
   opacity: 0.18;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18 0 0 0 0 0.14 0 0 0 0 0.10 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.92 0 0 0 0 0.85 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
 }
 
 .hero-bg-vignette {
   background:
-    linear-gradient(180deg, rgba(241, 235, 221, 0.3) 0%, transparent 15%, transparent 80%, rgba(241, 235, 221, 0.95) 100%);
+    linear-gradient(180deg, rgba(13, 12, 10, 0.3) 0%, transparent 15%, transparent 78%, rgba(13, 12, 10, 0.98) 100%);
 }
